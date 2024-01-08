@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Website</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <main>
+        <!-- corkboard with tasks -->
+<!-- create, expand, update, delete -->
+<!-- you have the ability to save notes to a database so they reappear with each refresh -->
+<!-- eventually i want the ability to move notes around -->
+
+<!-- sticky notes have due dates, titles, and assignees as well as a larger notation section -->
+<div class="container">
+  <header>
+    <h1>Notes</h1>
+  </header>
+  <div class="secondaryContainer">
+    <nav>
+      <button id="returnButton" class="button">back</button>
+      <button id="editButton" class="button">edit</button>
+      <button id="deleteButton" class="button">delete</button>
+      <button onclick="writeData()" id="saveButton" class="button">Save</button>
+      <button onclick="createNote()" class="newButton button">+</button>
+    </nav>
+
+    <div id="expandedGridContainer" class="expandedGridContainer">
+
+      <!--       <input type="text" id="titleEditor" maxlength="100" contenteditable="true" placeholder="Title your note..."> -->
+      <p id="titleEditor">HI!!!!!</p>
+      <textarea name="textEditor" class="textEditor" id="textEditor" cols="90" rows="6" maxlength="500" placeholder="Edit your note..."></textarea>
+
+    </div>
+
+    <div class="spacer"> </div>
+    <div class="gridContainer" id="gridContainer">
+      <div contenteditable="true" class="gridSquare" onclick="expandNote(1)" id="q1">
+        <div class="noteTitles" id="title1">Wednesday to-do</div>
+        <div id="text1">blasdlklksadjflkasjdf lkjsdflkjsd kljsdls kdsjfkdf kjkjsj kdjkfk dkkj</div>
+      </div>
+      <div class="gridSquare" onclick="expandNote(2)" id="q2">
+        <div class="noteTitles" id="title2">Thursday to-do</div>
+        <div id="text2">textytextytexty text</div>
+
+      </div>
+    </div>
+  </div>
+</div> 
+    </main>
+	<script src="index.js"></script>
+  </body>
+</html>
