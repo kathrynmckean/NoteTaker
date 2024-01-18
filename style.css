@@ -6,8 +6,8 @@ body {
 
 .container {
   padding: 10px;
-  min-width: 650px;
-  max-width: 1000px;
+  min-width: 700px;
+  max-width: 800px;
 }
 
 header {
@@ -19,8 +19,8 @@ header {
   background-color: #a3b18a;
   border-radius: 10px;
   padding: 0px 0px 5px 0px;
-    min-width: 300px;
-  width = 90%;
+/*     min-width: 300px;
+  width = 90%; */
 /*   max-width: 2000px; */
 }
 
@@ -35,10 +35,13 @@ nav {
   display: grid;
   justify-content: center;
   grid-template-columns: 33% 33% 33%;
+  min-height: 200px;
 }
 
 .textEditor {
-  width: 90%;
+  width: 95%;
+  min-height: 100px;
+  margin: 10px 0px;
   padding: 10px;
   font-size: 15px;
 }
@@ -50,7 +53,7 @@ nav {
   padding: 15px;
   height: 200px;
   min-width: 200px;
-  max-width: 250;
+/*   max-width: 250; */
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
@@ -59,6 +62,7 @@ nav {
   text-overflow: ellipsis;
   box-sizing: border-box;
   border: 3px solid transparent;
+  
 }
 
 .gridSquare:hover {
@@ -70,15 +74,15 @@ nav {
 }
 
 .expandedGridContainer {
-  /*   height: 200px; */
+  min-height: 200px;
   display: none;
   flex-direction: column;
-  justify-content: center;
+/*   justify-content: center; */
   margin: 10px;
-  padding: 20px 10px;
+  padding: 10px 15px;
   background-color: #ccd5ae;
   border-radius: 5px;
-  border: 2px solid #ccd5ae;
+/*   border: 2px solid #ccd5ae; */
   width = 90%;
   /*   box-shadow: 0px 0px 2px white; */
 }
@@ -86,22 +90,23 @@ nav {
 /* Buttons/Nav */
 
 #returnButton {
-  visibility: hidden;
+  opacity: 0%; 
 }
 
 #editButton {
-  visibility: hidden;
+  opacity: 0%; 
 }
 
 #deleteButton {
-  visibility: hidden;
+  opacity: 0%; 
 }
 
 #saveButton {
-  visibility: hidden;
+  opacity: 0%; 
 }
 
 .button {
+  transition: opacity .25s ease-in-out;
   background-color: #fff;
   border-radius: 12px;
   color: #000;
