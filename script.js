@@ -1,17 +1,17 @@
 let sampleTitle = "Hello im a fake title";
 let sampleText = "sample sample yes hi hello";
+let findId = 1;
 let data = {
   title: sampleTitle,
   text: sampleText
 };
-
 let i = 0;
 let isReturnButton = 0;
 
 //  sticky note creation
 function createNote() {
   // creating the new element, giving it the same class as its siblings
-  let findId = document.getElementById("gridContainer").children.length;
+  // let findId = document.getElementById("gridContainer").children.length;
 
   let getGridContainer = document.getElementById("gridContainer");
   let makeGridSquare = document.createElement("div");
@@ -19,26 +19,27 @@ function createNote() {
   //
   let makeTitle = document.createElement("div");
   makeTitle.innerHTML = `${sampleTitle}`;
-  makeTitle.setAttribute("id", `title${findId + 1}`);
+  makeTitle.setAttribute("id", `title${findId}`);
 
   let makeText = document.createElement("div");
   makeText.innerHTML = `${sampleText}`;
-  makeText.setAttribute("id", `text${findId + 1}`);
+  makeText.setAttribute("id", `text${findId}`);
 
   makeGridSquare.appendChild(makeTitle);
   makeGridSquare.appendChild(makeText);
 
   makeGridSquare.setAttribute("class", "gridSquare");
-  makeGridSquare.setAttribute("contenteditable", "false");
+  makeGridSquare.setAttribute("contenteditable", "true");
   // setting the id to match the number of squares including itself
 
-  makeGridSquare.setAttribute("id", `q${findId + 1}`);
+  makeGridSquare.setAttribute("id", `q${findId}`);
 
   // add onclick attribute
-  makeGridSquare.setAttribute("onclick", `expandNote(${findId + 1})`);
+  makeGridSquare.setAttribute("onclick", `expandNote(${findId})`);
 
   // officially creating the note
   getGridContainer.appendChild(makeGridSquare);
+  findId++;
 }
 
 // expand view of sticky note - takes up more of screen
@@ -56,15 +57,16 @@ function expandNote(a) {
 
     let showReturnButton = document.querySelector("#returnButton");
     showReturnButton.setAttribute("onclick", `reduceNote(${a})`);
-    showReturnButton.style.visibility = "visible";
+    // showReturnButton.style.visibility = "visible";
+    showReturnButton.style.opacity = 100%
 
     let showEditButton = document.querySelector("#editButton");
     showEditButton.setAttribute("onclick", `editNote(${a})`);
-    showEditButton.style.visibility = "visible";
+    showEditButton.style.opacity = 100%
 
     let showDeleteButton = document.querySelector("#deleteButton");
     showDeleteButton.setAttribute("onclick", `deleteNote(${a})`);
-    showDeleteButton.style.visibility = "visible";
+    showDeleteButton.style.opacity = 100%
 
     console.log("note was expanded");
     return;
@@ -83,19 +85,22 @@ function expandNote(a) {
     //     find return button and replace onclick with this one!
     let showReturnButton = document.querySelector("#returnButton");
     showReturnButton.setAttribute("onclick", `reduceNote(${a})`);
-    showReturnButton.style.visibility = "visible";
+    showReturnButton.style.opacity = 100%
 
     //   SHOW EDIT BUTTON
     let showButton = document.querySelector("#editButton");
     showButton.setAttribute("onclick", `editNote(${a})`);
-    showButton.style.visibility = "visible";
+    showButton.style.opacity = 100%
 
     return;
   }
 }
 
 function deleteNote(a) {
-  console.log("delete function");
+  reduceNote(a);
+  console.log("deleting function");
+  let findClick = document.querySelector(`#q${a}`);
+  findClick.remove();
 }
 
 function editNote(a) {
@@ -107,15 +112,20 @@ function editNote(a) {
   let expandedText = document.getElementById("textEditor");
   expandedText.value = `${noteText}`;
 
+  let showSaveButton = document.querySelector("#saveButton");
+  showSaveButton.setAttribute("onclick", `saveNote(${a})`);
+  showSaveButton.style.opacity = "100%";
+
   // show the editing page class=expandedGridContainer
   let findEditor = document.querySelector(`#expandedGridContainer`);
   findEditor.style.display = "flex";
 }
 
-function writeData() {
-  let title = document.getElementById("titleEditor").value;
+function saveNote() {
+  let title = document.getElementById("titleEditor").innerHTML;
   let text = document.getElementById("textEditor").value;
-
+console.log(a);
+  console.log(text);
   if (title == "" || text == "") {
     alert("please enter field");
   } else {
@@ -124,8 +134,19 @@ function writeData() {
       title: title,
       text: text
     };
+
+    // the edited text is saved in the element called text
+
+    let smallNoteText = document.getElementById(`text${a}`);
+    console.log(smallNoteText);
+    smallNoteText.innerHTML = `${text}`;
+
+    console.log(smallNoteText);
   }
+  reduceNote(a);
 }
+
+
 function reduceNote(a) {
   if ((isReturnButton = 1)) {
     isReturnButton = 0;
@@ -139,16 +160,19 @@ function reduceNote(a) {
 
     //     hide back button
     let removeReturnButton = document.getElementById("returnButton");
-    removeReturnButton.style.visibility = "hidden";
+    removeReturnButton.style.opacity = "0%";
 
     //     hide edit button
     let hideButton = document.querySelector("#editButton");
     hideButton.setAttribute("onclick", `editNote(${a})`);
-    hideButton.style.visibility = "hidden";
+    hideButton.style.opacity = "0%";
 
     // hide delete button
     let removeDeleteButton = document.getElementById("deleteButton");
-    removeDeleteButton.style.visibility = "hidden";
+    removeDeleteButton.style.opacity = "0%";
+
+    let removeSaveButton = document.getElementById("saveButton");
+    removeSaveButton.style.opacity = "0%";
   }
 }
 
