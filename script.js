@@ -1,22 +1,24 @@
 let sampleTitle = "Hello im a fake title";
 let sampleText = "sample sample yes hi hello";
 let findId = 1;
+
 let data = {
   title: sampleTitle,
   text: sampleText
 };
+
 let i = 0;
 let isReturnButton = 0;
 
 //  sticky note creation
 function createNote() {
   // creating the new element, giving it the same class as its siblings
+  // the below code was bad bc if you delete a note your ids get messed up
   // let findId = document.getElementById("gridContainer").children.length;
 
   let getGridContainer = document.getElementById("gridContainer");
   let makeGridSquare = document.createElement("div");
 
-  //
   let makeTitle = document.createElement("div");
   makeTitle.innerHTML = `${sampleTitle}`;
   makeTitle.setAttribute("id", `title${findId}`);
@@ -58,15 +60,23 @@ function expandNote(a) {
     let showReturnButton = document.querySelector("#returnButton");
     showReturnButton.setAttribute("onclick", `reduceNote(${a})`);
     // showReturnButton.style.visibility = "visible";
-    showReturnButton.style.opacity = 100%
+    //
+    //
+    //
+    showReturnButton.style.opacity = "100%";
+    //
+    //
+    //
 
     let showEditButton = document.querySelector("#editButton");
     showEditButton.setAttribute("onclick", `editNote(${a})`);
-    showEditButton.style.opacity = 100%
+    // showEditButton.style.visibility = "visible";
+    showEditButton.style.opacity = "100%";
 
     let showDeleteButton = document.querySelector("#deleteButton");
     showDeleteButton.setAttribute("onclick", `deleteNote(${a})`);
-    showDeleteButton.style.opacity = 100%
+    // showDeleteButton.style.visibility = "visible";
+    showDeleteButton.style.opacity = "100%";
 
     console.log("note was expanded");
     return;
@@ -85,12 +95,12 @@ function expandNote(a) {
     //     find return button and replace onclick with this one!
     let showReturnButton = document.querySelector("#returnButton");
     showReturnButton.setAttribute("onclick", `reduceNote(${a})`);
-    showReturnButton.style.opacity = 100%
+    showReturnButton.style.opacity = "100%";
 
     //   SHOW EDIT BUTTON
     let showButton = document.querySelector("#editButton");
     showButton.setAttribute("onclick", `editNote(${a})`);
-    showButton.style.opacity = 100%
+    showButton.style.opacity = "100%";
 
     return;
   }
@@ -121,10 +131,10 @@ function editNote(a) {
   findEditor.style.display = "flex";
 }
 
-function saveNote() {
+function saveNote(a) {
   let title = document.getElementById("titleEditor").innerHTML;
   let text = document.getElementById("textEditor").value;
-console.log(a);
+  console.log(a);
   console.log(text);
   if (title == "" || text == "") {
     alert("please enter field");
@@ -145,7 +155,6 @@ console.log(a);
   }
   reduceNote(a);
 }
-
 
 function reduceNote(a) {
   if ((isReturnButton = 1)) {
